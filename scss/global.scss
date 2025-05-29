@@ -1,0 +1,486 @@
+// Global styles
+html,
+body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    @include font-size(1.2rem);
+    color: $cafe;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    position: relative;
+}
+
+header,
+section,
+footer {
+    width: 100%;
+    float: left;
+    scroll-margin-top: 80px;
+}
+
+.mh-100 {
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    @include transition(ease, 0.3s);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $cafe;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: bold;
+}
+
+.btn {
+    color: $white;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    color: $cafe;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-bg-light {
+    background-color: #f4f4f4;
+
+    .card-title {
+        color: $primary;
+    }
+}
+
+form {
+    color: #b7b7b7;
+}
+
+.form-control {
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+
+    &:focus {
+        background-color: #f4f4f4;
+    }
+}
+
+.form-floating > .form-control:focus ~ label::after,
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after,
+.form-floating > .form-control-plaintext ~ label::after,
+.form-floating > .form-select ~ label::after {
+    background-color: #f4f4f4;
+}
+
+.py-60 {
+    padding: 60px 0;
+}
+
+.pt-60 {
+    padding-top: 60px;
+}
+
+.pb-60 {
+    padding-bottom: 60px;
+}
+
+.py-30 {
+    padding: 30px 0;
+}
+
+.pt-30 {
+    padding-top: 30px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.whatsapp {
+    @include whatsapp-button;
+}
+
+header {
+    @include font-size(1rem);
+    font-weight: 700;
+    width: 100%;
+    height: auto;
+    padding: 15px 30px;
+    color: #7d4400;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    @include transition(ease, 0.2s);
+
+    a {
+        border-radius: 50rem;
+        color: $white;
+        display: inline-block;
+        padding: 5px 15px;
+
+        &::first-letter {
+            @include font-size(1.3rem);
+        }
+
+        &:hover {
+            background-color: $primary;
+        }
+    }
+
+    a.active {
+        background-color: $primary;
+    }
+
+    #logo-navbar {
+        width: 100%;
+        @include transition(ease, 0.2s);
+    }
+
+    #mburger {
+        @include font-size(2rem);
+        background-color: $primary;
+        border-radius: 0.6rem;
+        color: $white;
+        padding: 2px 12px;
+
+        &:hover,
+        &:focus {
+            // color: ;
+        }
+    }
+}
+
+.navbar-interna {
+    background-color: $cafe;
+}
+
+.navbar-scroll {
+    background: rgba(81, 33, 1, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    padding: 10px 30px !important;
+    @include transition(ease, 0.3s);
+
+    #logo-navbar {
+        width: 120px !important;
+    }
+
+    #mburger {
+        // color: !important;
+    }
+}
+
+#mapa {
+    line-height: 0;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+#jumbotron {
+    background-color: $cafe;
+    color: $white;
+    min-height: 100vh;
+    position: relative;
+
+    .container,
+    .row {
+        min-height: 100vh;
+    }
+
+    p {
+        @include font-size(1.4rem);
+        font-weight: 600;
+    }
+
+    .btn {
+        color: $cafe;
+        text-shadow: none;
+    }
+
+    #contenedor-info {
+        z-index: 1;
+    }
+
+    .thumb-jumbotron {
+        position: absolute;
+        right: 0;
+        @include absolute-center-y;
+        z-index: 0;
+    }
+}
+
+.jumbotron-interna {
+    margin-top: 100px;
+}
+
+#recetas {
+    background-color: #f2f1f0;
+
+    .card {
+        background-color: #ebeae9 !important;
+        overflow: hidden;
+
+        h1 {
+            color: $primary;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            display: flex;
+            justify-items: center;
+            align-items: center;
+
+            img {
+                position: relative;
+                right: -45px;
+            }
+        }
+    }
+}
+
+#productos {
+    .bullet {
+        max-width: 40px;
+        vertical-align: middle;
+    }
+}
+
+#contacto {
+    color: $primary;
+
+    #thumb-contacto {
+        position: relative;
+        right: -12px;
+    }
+}
+
+#eligenos {
+    background-color: $primary;
+    color: $white;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $white;
+    }
+
+    .btn {
+        background-color: $cafe;
+        color: $white;
+    }
+}
+
+#beneficios {
+    @include background(
+        "../images/beneficios/bg-beneficios.png",
+        right center,
+        contain
+    );
+    background-repeat: no-repeat;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $cafe;
+    }
+
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+#razones {
+    font-weight: 700;
+
+    h1 {
+        color: $primary;
+    }
+
+    .icono-beneficio {
+        margin-bottom: 30px;
+        max-width: 150px;
+        vertical-align: middle;
+    }
+}
+
+#quesos-100 {
+    @include background("../images/productos/bg-quesos-100.png", center, cover);
+    text-align: center;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $cafe;
+    }
+
+    h1 {
+        @include font-size(3rem);
+    }
+}
+
+#catalogo {
+    text-align: center;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $cafe;
+    }
+
+    h1 {
+        @include font-size(3rem);
+    }
+
+    .card {
+        .card-title {
+            @include font-size(1.8rem);
+        }
+
+        .card-subtitle {
+            font-weight: bold;
+        }
+
+        .card-text {
+            @include font-size(1rem);
+        }
+    }
+}
+
+#receta {
+    h1 {
+        color: $primary;
+        text-transform: uppercase;
+        @include font-size(4rem);
+    }
+}
+
+#tiempo-receta,
+#thumb-receta {
+    overflow: hidden;
+    text-align: end;
+
+    img {
+        max-width: 400px;
+        position: relative;
+        right: -100px;
+    }
+
+    h2 {
+        background-color: $primary;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+        color: $white;
+        display: inline-block;
+        padding: 20px 20px 20px 30px;
+        @include font-size(1.8rem);
+    }
+
+    .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+#mas-recetas {
+    background-color: #f2f1f0;
+    text-align: center;
+
+    h1 {
+        color: $cafe;
+    }
+
+    .card {
+        background-color: $primary;
+        color: $white;
+
+        .card-title {
+            color: $white;
+        }
+
+        .btn {
+            background-color: $cafe;
+            color: $white;
+        }
+    }
+}
+
+footer {
+    background-color: $cafe;
+    color: $white;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $white;
+    }
+
+    a {
+        color: $white;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    .social {
+        @include font-size(2rem);
+
+        color: $white;
+
+        a {
+            background-color: $primary;
+            border-radius: 1rem;
+            color: $white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+}

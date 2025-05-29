@@ -1,0 +1,89 @@
+#productos {
+    .swiper {
+        padding: 0;
+    }
+
+    .swiper-wrapper {
+        padding: 30px 0;
+    }
+
+    .swiper-slide {
+        opacity: 0.5;
+        transition: all 0.3s ease;
+        transform: scale(0.8); /* Initial scale for all slides */
+    }
+
+    .swiper-pagination {
+        bottom: 0;
+
+        .swiper-pagination-bullet {
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        background-color: $primary;
+        border-radius: 50%;
+        color: $white;
+        width: 40px;
+        height: 40px;
+
+        &::after {
+            @include font-size(1.3rem);
+        }
+    }
+
+    .active {
+        opacity: 1;
+        transform: scale(1); /* Scaled up size for center slide */
+    }
+
+    .card {
+        background-color: $white;
+        color: $cafe;
+        position: relative;
+        text-align: center;
+
+        .icon {
+            margin-bottom: 1rem;
+        }
+
+        .card-subtitle {
+            @include font-size(1.5rem);
+            color: $cafe;
+            font-weight: bold;
+        }
+
+        .card-text {
+            @include font-size(1rem);
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80%;
+            height: 328px;
+            @include absolute-center-x;
+            z-index: -1;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+}
+
+@include media-breakpoint-up(lg) {
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+@include media-breakpoint-up(xxl) {
+}

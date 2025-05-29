@@ -1,0 +1,53 @@
+// No media query necessary for xs breakpoint as it's effectively `@media (min-width: 0) { ... }`
+
+// Small devices (landscape phones, 576px and up)
+@include media-breakpoint-up(sm) {
+    .jumbotron-interna {
+        margin-top: 150px;
+    }
+
+    #thumb-receta {
+        img {
+            max-width: 500px;
+            right: -100px;
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@include media-breakpoint-up(md) {
+    .jumbotron-interna {
+        margin-top: 200px;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@include media-breakpoint-up(lg) {
+    header {
+        padding: 60px 30px;
+    }
+
+    #jumbotron {
+        .thumb-jumbotron {
+            max-width: 60%;
+        }
+    }
+
+    .jumbotron-interna {
+        margin-top: 228px;
+    }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@include media-breakpoint-up(xl) {
+    .jumbotron-interna {
+        margin-top: 256px;
+    }
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@include media-breakpoint-up(xxl) {
+    .jumbotron-interna {
+        margin-top: 280px;
+    }
+}
