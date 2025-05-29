@@ -1,5 +1,72 @@
 <?php get_header(); ?>
 
+<section id="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 my-auto">
+                <div id="contenedor-info" class="position-relative">
+                    <h1
+                        class="mb-4"
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="0"
+                    >
+                        Encuentra el
+                    </h1>
+                    <img
+                        src="<?php echo esc_url(
+                            get_template_directory_uri()
+                        ); ?>/assets/images/logo-queso-perfecto@2x.png"
+                        alt="Queso Perfecto"
+                        class="img-fluid mb-3"
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="100"
+                    />
+                    <h1
+                        class="mb-5"
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="200"
+                    >
+                        para tus platillos
+                    </h1>
+                    <a
+                        href="#contacto"
+                        class="btn btn-secondary btn-lg rounded-pill"
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="300"
+                        >Conoce más aquí</a
+                    >
+                </div>
+            </div>
+            <div class="col-lg-6 position-relative">
+                <img
+                    src="<?php echo esc_url(
+                        get_template_directory_uri()
+                    ); ?>/assets/images/thumb-jumbotron.png"
+                    alt=""
+                    class="thumb-jumbotron img-fluid d-lg-none"
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-delay="400"
+                />
+            </div>
+        </div>
+    </div>
+    <img
+        src="<?php echo esc_url(
+            get_template_directory_uri()
+        ); ?>/assets/images/thumb-jumbotron.png"
+        alt=""
+        class="thumb-jumbotron img-fluid d-none d-lg-block"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="400"
+    />
+</section>
+
 <section id="recetas" class="pt-60 pb-30">
     <div class="container">
         <div class="row text-center mb-5">
