@@ -116,7 +116,9 @@
             </div>
         </div>
 
-        <header id="navbar">
+        <header id="navbar" <?php if (
+            !is_home()
+        ): ?>class="navbar-interna"<?php endif; ?>>
             <div class="container">
                 <div class="row">
                     <div class="col-6 col-lg-3 my-auto">
