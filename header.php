@@ -85,17 +85,23 @@
                             >
                         </li>
                         <li>
-                            <a class="anchor" id="btn-nav-2" href="#productos"
+                            <a class="anchor" id="btn-nav-2" href="<?php echo esc_url(
+                                get_permalink(8)
+                            ); ?>"
                                 >Productos</a
                             >
                         </li>
                         <li>
-                            <a class="anchor" id="btn-nav-3" href="#beneficios"
+                            <a class="anchor" id="btn-nav-3" href="<?php echo esc_url(
+                                get_permalink(6)
+                            ); ?>"
                                 >Beneficios</a
                             >
                         </li>
                         <li>
-                            <a class="anchor" id="btn-nav-3" href="#recetas"
+                            <a class="anchor" id="btn-nav-4" href="<?php echo esc_url(
+                                home_url()
+                            ); ?>/recetas"
                                 >Recetas</a
                             >
                         </li>
@@ -136,13 +142,19 @@
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#productos"> Productos </a>
+                                    <a href="<?php echo esc_url(
+                                        get_permalink(8)
+                                    ); ?>"> Productos </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#beneficios"> Beneficios </a>
+                                    <a href="<?php echo esc_url(
+                                        get_permalink(6)
+                                    ); ?>"> Beneficios </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#recetas"> Recetas </a>
+                                    <a href="<?php echo esc_url(
+                                        home_url()
+                                    ); ?>/recetas"> Recetas </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="#contacto"> Contacto </a>

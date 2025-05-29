@@ -45,13 +45,19 @@
                             ); ?>">Inicio</a>
                         </li>
                         <li>
-                            <a href="#">Productos</a>
+                            <a href="<?php echo esc_url(
+                                get_permalink(8)
+                            ); ?>">Productos</a>
                         </li>
                         <li>
-                            <a href="#">Beneficios</a>
+                            <a href="<?php echo esc_url(
+                                get_permalink(6)
+                            ); ?>">Beneficios</a>
                         </li>
                         <li>
-                            <a href="#">Recetas</a>
+                            <a href="<?php echo esc_url(
+                                home_url()
+                            ); ?>/recetas">Recetas</a>
                         </li>
                         <li>
                             <a href="#">Contacto</a>
