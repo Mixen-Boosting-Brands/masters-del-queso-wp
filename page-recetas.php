@@ -16,13 +16,6 @@
             $product_query = new WP_Query([
                 "post_type" => "recetas",
                 "posts_per_page" => -1,
-                "tax_query" => [
-                    [
-                        "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
-                        "field" => "slug",
-                        "terms" => $category->slug,
-                    ],
-                ],
             ]);
 
             if ($product_query->have_posts()):
