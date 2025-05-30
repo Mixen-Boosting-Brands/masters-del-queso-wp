@@ -1,24 +1,22 @@
 <?php get_header(); ?>
 
-	<main role="main" aria-label="Content">
-		<!-- section -->
-		<section>
-
-			<!-- article -->
-			<article id="post-404">
-
-				<h1><?php esc_html_e( 'Page not found', 'html5blank' ); ?></h1>
-				<h2>
-					<a href="<?php echo esc_url( home_url() ); ?>"><?php esc_html_e( 'Return home?', 'html5blank' ); ?></a>
-				</h2>
-
-			</article>
-			<!-- /article -->
-
-		</section>
-		<!-- /section -->
-	</main>
-
-<?php get_sidebar(); ?>
+    <section class="py-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="200">
+                            Error 404
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Lo sentimos, la página actual no existe o ha sido movida de lugar.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <?php get_footer(); ?>
