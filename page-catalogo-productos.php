@@ -99,7 +99,7 @@
                             <a href="<?php the_field(
                                 "producto_receta_link"
                             ); ?>" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                        <?php else ?>
+                        <?php else: ?>
                             <a href="<?php the_field(
                                 "producto_receta_link"
                             ); ?>" class="btn btn-primary btn-lg rounded-pill disabled">Ver receta</a>
