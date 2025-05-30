@@ -196,9 +196,9 @@
                                 );
                                 $subtitulo = get_field("subtitulo"); // Example ACF field
                                 $descripcion = get_field("descripcion"); // Example ACF field
-                                $link_receta = get_field("link_receta");
 
-                                // Example ACF field
+                                // IMPORTANT: 'receta_relacionada' is a Post Object field, so get the post object, not a URL
+                                $receta_post = get_field("receta_relacionada");
                                 ?>
 
                         <div class="swiper-slide">
@@ -226,10 +226,15 @@
                                         <p class="card-text"><?php the_excerpt(); ?></p>
                                     <?php endif; ?>
 
-                                    <?php if ($link_receta): ?>
+                                    <?php if (
+                                        $receta_post &&
+                                        is_object($receta_post)
+                                    ): ?>
                                         <a href="<?php echo esc_url(
-                                            $link_receta
-                                        ); ?>" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
+                                            get_permalink($receta_post->ID)
+                                        ); ?>" class="btn btn-primary btn-lg rounded-pill">
+                                            Ver receta
+                                        </a>
                                     <?php endif; ?>
                                 </div>
                             </div>
