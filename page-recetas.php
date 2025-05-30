@@ -2,21 +2,10 @@
 
 <section id="recetas" class="py-60">
     <div class="container">
-
-        <?php
-        // Get all product categories
-        $product_categories = get_categories([
-            "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
-            "hide_empty" => true,
-            "orderby" => "term_order",
-        ]);
-
-        foreach ($product_categories as $category): ?>
-
         <div class="row mb-4">
             <div class="col-12">
                 <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
-                    <?php echo esc_html($category->name); ?>
+                    Recetas
                 </h1>
             </div>
         </div>
@@ -89,10 +78,6 @@
             endif;
             ?>
         </div>
-
-        <?php endforeach;
-        ?>
-
     </div>
 </section>
 
