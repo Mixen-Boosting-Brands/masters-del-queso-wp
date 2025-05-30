@@ -137,26 +137,34 @@
                         <nav class="d-none d-lg-block">
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item">
-                                    <a class="active" href="<?php echo esc_url(
-                                        home_url()
-                                    ); ?>">
+                                    <a <?php if (
+                                        is_home()
+                                    ): ?>class="active"<?php endif; ?> href="<?php echo esc_url(
+     home_url()
+ ); ?>">
                                         Inicio
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="<?php echo esc_url(
-                                        get_permalink(8)
-                                    ); ?>"> Productos </a>
+                                    <a <?php if (
+                                        is_page(8)
+                                    ): ?>class="active"<?php endif; ?> href="<?php echo esc_url(
+     get_permalink(8)
+ ); ?>"> Productos </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="<?php echo esc_url(
-                                        get_permalink(6)
-                                    ); ?>"> Beneficios </a>
+                                    <a <?php if (
+                                        is_page(6)
+                                    ): ?>class="active"<?php endif; ?> href="<?php echo esc_url(
+     get_permalink(6)
+ ); ?>"> Beneficios </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="<?php echo esc_url(
-                                        home_url()
-                                    ); ?>/recetas"> Recetas </a>
+                                    <a <?php if (
+                                        is_page(22)
+                                    ): ?>class="active"<?php endif; ?> href="<?php echo esc_url(
+     get_permalink(22)
+ ); ?>"> Recetas </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="#contacto"> Contacto </a>

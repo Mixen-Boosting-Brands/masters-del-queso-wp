@@ -30,7 +30,7 @@
     <div class="container">
 
         <?php
-        // Get all product categories (or custom taxonomy if you use one — replace 'category' with your taxonomy slug)
+        // Get all product categories
         $product_categories = get_categories([
             "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
             "hide_empty" => true,
