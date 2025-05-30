@@ -130,7 +130,7 @@
                             ); ?></p>
                         <?php endif; ?>
 
-                            <p class="card-text"><?php the_content(); ?></p>
+                            <p class="card-text"><?php the_excerpt(); ?></p>
 
                         <?php if (get_field("receta_relacionada")): ?>
                             <a href="<?php the_field(
