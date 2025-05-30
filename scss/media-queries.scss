@@ -23,9 +23,11 @@
 
 // Large devices (desktops, 992px and up)
 @include media-breakpoint-up(lg) {
+    /*
     header {
         padding: 60px 30px;
     }
+    */
 
     #jumbotron {
         .thumb-jumbotron {
