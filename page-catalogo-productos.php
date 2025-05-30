@@ -72,17 +72,58 @@
                     $delay
                 ); ?>">
                     <?php if (has_post_thumbnail()): ?>
-                        <?php the_post_thumbnail("thumb-producto-receta", [
-                            "class" => "icon img-fluid",
-                        ]); ?>
+                        <?php if (get_field("receta_relacionada")): ?>
+                            <a href="<?php the_field("receta_relacionada"); ?>">
+                                <?php the_post_thumbnail(
+                                    "thumb-producto-receta",
+                                    [
+                                        "class" => "icon img-fluid",
+                                    ]
+                                ); ?>
+                            </a>
+                        <?php else: ?>
+                            <a href="<?php the_field(
+                                "receta_relacionada"
+                            ); ?>" class="disabled">
+                                <?php the_post_thumbnail(
+                                    "thumb-producto-receta",
+                                    [
+                                        "class" => "icon img-fluid",
+                                    ]
+                                ); ?>
+                            </a>
+                        <?php endif; ?>
                     <?php else: ?>
-                        <img src="<?php echo esc_url(
-                            get_template_directory_uri()
-                        ); ?>/assets/images/productos/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                        <?php if (get_field("receta_relacionada")): ?>
+                            <a href="<?php the_field("receta_relacionada"); ?>">
+                                <img src="<?php echo esc_url(
+                                    get_template_directory_uri()
+                                ); ?>/assets/images/productos/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                            </a>
+                        <?php else: ?>
+                            <a href="<?php the_field(
+                                "receta_relacionada"
+                            ); ?>" class="disabled">
+                                <img src="<?php echo esc_url(
+                                    get_template_directory_uri()
+                                ); ?>/assets/images/productos/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                            </a>
+                        <?php endif; ?>
                     <?php endif; ?>
 
                     <div class="card-body">
-                        <h1 class="card-title"><?php the_title(); ?></h1>
+                        <?php if (get_field("receta_relacionada")): ?>
+                            <a href="<?php the_field("receta_relacionada"); ?>">
+                                <h1 class="card-title"><?php the_title(); ?></h1>
+                            </a>
+                        <?php else: ?>
+                            <a href="<?php the_field(
+                                "receta_relacionada"
+                            ); ?>" class="disabled">
+                                <h1 class="card-title"><?php the_title(); ?></h1>
+                            </a>
+                        <?php endif; ?>
+
                         <?php if (get_field("descripcion_breve")): ?>
                             <p class="card-subtitle"><?php the_field(
                                 "descripcion_breve"
