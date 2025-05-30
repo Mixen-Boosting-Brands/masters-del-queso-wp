@@ -51,10 +51,8 @@
             <?php
             // Query posts in this category
             $product_query = new WP_Query([
-                "post_type" => "producto",
+                "post_type" => "productos",
                 "posts_per_page" => -1,
-                "orderby" => "menu_order",
-                "order" => "ASC",
                 "tax_query" => [
                     [
                         "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
