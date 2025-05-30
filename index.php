@@ -162,236 +162,90 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col text-center">
-                <h1
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                    data-aos-delay="0"
-                >
+                <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
                     Explora nuestros productos
                 </h1>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <!-- Slider main container -->
-                <div
-                    class="swiper swiper-productos"
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                    data-aos-delay="0"
-                >
+                <div class="swiper swiper-productos" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
-                        <!-- Slide 1 -->
+
+                        <?php
+                        // Query all posts from 'productos' CPT
+                        $productos_query = new WP_Query([
+                            "post_type" => "productos",
+                            "posts_per_page" => -1,
+                            "orderby" => "date",
+                            "order" => "DESC",
+                        ]);
+
+                        if ($productos_query->have_posts()):
+                            while ($productos_query->have_posts()):
+
+                                $productos_query->the_post();
+
+                                // Optional: custom fields or ACF fields here
+                                $imagen = get_the_post_thumbnail_url(
+                                    get_the_ID(),
+                                    "medium_large"
+                                );
+                                $subtitulo = get_field("subtitulo"); // Example ACF field
+                                $descripcion = get_field("descripcion"); // Example ACF field
+                                $link_receta = get_field("link_receta");
+
+                                // Example ACF field
+                                ?>
+
                         <div class="swiper-slide">
                             <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
+                                <?php if ($imagen): ?>
+                                    <img src="<?php echo esc_url(
+                                        $imagen
+                                    ); ?>" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                                <?php endif; ?>
+
                                 <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
+                                    <h1 class="card-title"><?php the_title(); ?></h1>
+
+                                    <?php if ($subtitulo): ?>
+                                        <p class="card-subtitle"><?php echo esc_html(
+                                            $subtitulo
+                                        ); ?></p>
+                                    <?php endif; ?>
+
+                                    <?php if ($descripcion): ?>
+                                        <p class="card-text"><?php echo esc_html(
+                                            $descripcion
+                                        ); ?></p>
+                                    <?php else: ?>
+                                        <p class="card-text"><?php the_excerpt(); ?></p>
+                                    <?php endif; ?>
+
+                                    <?php if ($link_receta): ?>
+                                        <a href="<?php echo esc_url(
+                                            $link_receta
+                                        ); ?>" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Slide 2 -->
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
-                                <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else:
+                            echo "<p>No hay productos disponibles en este momento.</p>";
+                        endif;
+                        ?>
 
-                        <!-- Slide 3 -->
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
-                                <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 4 -->
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
-                                <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 5 -->
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
-                                <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 6 -->
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
-                                <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 7 -->
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
-                                <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 8 -->
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <img
-                                    src="<?php echo esc_url(
-                                        get_template_directory_uri()
-                                    ); ?>/assets/images/productos/1.png"
-                                    class="icon img-fluid"
-                                    alt="..."
-                                />
-                                <div class="card-body">
-                                    <h1 class="card-title">
-                                        Imitación de Queso Chihuahua en
-                                        Barra
-                                    </h4>
-                                    <p class="card-subtitle">
-                                        Textura semi-suave, sabor similar al queso chihuahua.
-                                    </p>
-                                    <p class="card-text">
-                                        Una opción económica con excelente sabor y rendimiento. Perfecto para negocios que buscan mantener costos bajos sin sacrificar la calidad.
-                                    </p>
-                                    <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- If we need navigation buttons -->
+                    <!-- Swiper navigation buttons -->
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                 </div>
