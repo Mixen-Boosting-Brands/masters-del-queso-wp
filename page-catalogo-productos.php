@@ -7,7 +7,21 @@ get_header(); ?>
 
 <section id="productos" class="container my-5">
     <h2 class="text-center mb-5">Catálogo de Productos</h2>
-    <div class="row gy-4">
+
+    <?php
+    // Get product categories (assuming your taxonomy is called 'categoria-producto')
+    $terms = get_terms([
+        "taxonomy" => "categoria-producto",
+        "hide_empty" => true,
+        "orderby" => "name",
+        "order" => "ASC",
+    ]);
+
+    if (!empty($terms) && !is_wp_error($terms)):
+        foreach ($terms as $term): ?>
+
+    <h3 class="mb-4"><?php echo esc_html($term->name); ?></h3>
+    <div class="row gy-4 mb-5">
 
         <?php
         $args = [
@@ -15,6 +29,13 @@ get_header(); ?>
             "posts_per_page" => -1,
             "orderby" => "title",
             "order" => "ASC",
+            "tax_query" => [
+                [
+                    "taxonomy" => "categoria-producto",
+                    "field" => "term_id",
+                    "terms" => $term->term_id,
+                ],
+            ],
         ];
 
         $productos_query = new WP_Query($args);
@@ -91,13 +112,26 @@ get_header(); ?>
         else:
              ?>
 
-        <p class="text-center">No hay productos disponibles en este momento.</p>
+        <p class="text-center">No hay productos en esta categoría.</p>
 
         <?php
         endif;
         ?>
 
     </div>
+
+    <?php endforeach; ?>
+
+    <?php
+    else:
+         ?>
+
+    <p class="text-center">No hay categorías de productos disponibles.</p>
+
+    <?php
+    endif;
+    ?>
+
 </section>
 
 <?php get_footer(); ?>
