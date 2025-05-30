@@ -1,137 +1,128 @@
-<?php
-/**
- * Template Name: Catálogo de Productos
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+<section id="quesos-100" class="jumbotron-interna py-60">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    Quesos 100% Leche
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <img
+                    src="<?php echo esc_url(
+                        get_template_directory_uri()
+                    ); ?>/assets/images/productos/thumb-quesos-100@2x.png"
+                    alt=""
+                    class="img-fluid"
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    data-aos-delay="200"
+                />
+            </div>
+        </div>
+    </div>
+</section>
 
-<section id="productos" class="container my-5">
-    <h2 class="text-center mb-5">Catálogo de Productos</h2>
-
-    <?php
-    // Get product categories (assuming your taxonomy is called 'categoria-producto')
-    $terms = get_terms([
-        "taxonomy" => "categoria-producto",
-        "hide_empty" => true,
-        "orderby" => "name",
-        "order" => "ASC",
-    ]);
-
-    if (!empty($terms) && !is_wp_error($terms)):
-        foreach ($terms as $term): ?>
-
-    <h3 class="mb-4"><?php echo esc_html($term->name); ?></h3>
-    <div class="row gy-4 mb-5">
+<section id="catalogo" class="py-60">
+    <div class="container">
 
         <?php
-        $args = [
-            "post_type" => "productos",
-            "posts_per_page" => -1,
-            "orderby" => "title",
-            "order" => "ASC",
-            "tax_query" => [
-                [
-                    "taxonomy" => "categoria-producto",
-                    "field" => "term_id",
-                    "terms" => $term->term_id,
-                ],
-            ],
-        ];
+        // Get all product categories (or custom taxonomy if you use one — replace 'category' with your taxonomy slug)
+        $product_categories = get_categories([
+            "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
+            "hide_empty" => true,
+            "orderby" => "term_order",
+        ]);
 
-        $productos_query = new WP_Query($args);
+        foreach ($product_categories as $category): ?>
 
-        if ($productos_query->have_posts()):
-            $delay = 0;
-            while ($productos_query->have_posts()):
-
-                $productos_query->the_post();
-                $receta = get_field("receta_relacionada");
-                $subtitulo = get_field("subtitulo");
-                ?>
-
-        <div class="col-lg-6 col-xl-3 my-auto">
-            <div class="card h-100" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo esc_attr(
-                $delay
-            ); ?>">
-
-                <?php if (has_post_thumbnail()): ?>
-                    <?php if ($receta): ?>
-                        <a href="<?php echo esc_url(
-                            get_permalink($receta)
-                        ); ?>">
-                            <?php the_post_thumbnail("thumb-producto-receta", [
-                                "class" => "icon img-fluid",
-                            ]); ?>
-                        </a>
-                    <?php else: ?>
-                        <span class="d-block">
-                            <?php the_post_thumbnail("thumb-producto-receta", [
-                                "class" => "icon img-fluid opacity-50",
-                            ]); ?>
-                        </span>
-                    <?php endif; ?>
-                <?php endif; ?>
-
-                <div class="card-body d-flex flex-column">
-
-                    <?php if ($receta): ?>
-                        <h1 class="card-title h5">
-                            <a href="<?php echo esc_url(
-                                get_permalink($receta)
-                            ); ?>" class="text-decoration-none">
-                                <?php the_title(); ?>
-                            </a>
-                        </h1>
-                    <?php else: ?>
-                        <h1 class="card-title h5 text-muted"><?php the_title(); ?></h1>
-                    <?php endif; ?>
-
-                    <?php if ($subtitulo): ?>
-                        <p class="card-subtitle text-muted mb-2"><?php echo esc_html(
-                            $subtitulo
-                        ); ?></p>
-                    <?php endif; ?>
-
-                    <p class="card-text mb-4"><?php echo get_the_excerpt(); ?></p>
-
-                    <?php if ($receta): ?>
-                        <a href="<?php echo esc_url(
-                            get_permalink($receta)
-                        ); ?>" class="btn btn-primary btn-lg rounded-pill mt-auto">Ver receta</a>
-                    <?php else: ?>
-                        <a href="#" class="btn btn-primary btn-lg rounded-pill mt-auto disabled" tabindex="-1" aria-disabled="true">Sin receta</a>
-                    <?php endif; ?>
-                </div>
-
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                    <?php echo esc_html($category->name); ?>
+                </h1>
             </div>
         </div>
 
-        <?php $delay += 100;
-            endwhile;
-            wp_reset_postdata();
-        else:
-             ?>
+        <div class="row">
+            <?php
+            // Query posts in this category
+            $product_query = new WP_Query([
+                "post_type" => "producto",
+                "posts_per_page" => -1,
+                "orderby" => "menu_order",
+                "order" => "ASC",
+                "tax_query" => [
+                    [
+                        "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
+                        "field" => "slug",
+                        "terms" => $category->slug,
+                    ],
+                ],
+            ]);
 
-        <p class="text-center">No hay productos en esta categoría.</p>
+            if ($product_query->have_posts()):
+                $delay = 100;
+                while ($product_query->have_posts()):
+                    $product_query->the_post(); ?>
 
-        <?php
-        endif;
+            <div class="col-lg-6 col-xl-3 my-auto">
+                <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo esc_attr(
+                    $delay
+                ); ?>">
+                    <?php if (has_post_thumbnail()): ?>
+                        <?php the_post_thumbnail("thumb-producto-receta", [
+                            "class" => "icon img-fluid",
+                        ]); ?>
+                    <?php else: ?>
+                        <img src="<?php echo esc_url(
+                            get_template_directory_uri()
+                        ); ?>/assets/images/productos/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                    <?php endif; ?>
+
+                    <div class="card-body">
+                        <h1 class="card-title"><?php the_title(); ?></h1>
+                        <?php if (get_field("producto_subtitulo")): ?>
+                            <p class="card-subtitle"><?php the_field(
+                                "producto_subtitulo"
+                            ); ?></p>
+                        <?php endif; ?>
+
+                        <?php if (get_field("producto_descripcion")): ?>
+                            <p class="card-text"><?php the_field(
+                                "producto_descripcion"
+                            ); ?></p>
+                        <?php endif; ?>
+
+                        <?php if (get_field("producto_receta_link")): ?>
+                            <a href="<?php the_field(
+                                "producto_receta_link"
+                            ); ?>" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+            <?php $delay += 100;
+                endwhile;
+                wp_reset_postdata();
+            else:
+                 ?>
+                <div class="col-12">
+                    <p>No hay productos disponibles en esta categoría.</p>
+                </div>
+            <?php
+            endif;
+            ?>
+        </div>
+
+        <?php endforeach;
         ?>
 
     </div>
-
-    <?php endforeach; ?>
-
-    <?php
-    else:
-         ?>
-
-    <p class="text-center">No hay categorías de productos disponibles.</p>
-
-    <?php
-    endif;
-    ?>
-
 </section>
 
 <?php get_footer(); ?>
