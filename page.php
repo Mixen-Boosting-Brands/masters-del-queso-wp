@@ -1,45 +1,22 @@
 <?php get_header(); ?>
 
-	<main role="main" aria-label="Content">
-		<!-- section -->
-		<section>
-
-			<h1><?php the_title(); ?></h1>
-
-		<?php if ( have_posts()) : while ( have_posts() ) : the_post(); ?>
-
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-				<?php the_content(); ?>
-
-				<?php comments_template( '', true ); // Remove if you don't want comments. ?>
-
-				<br class="clear">
-
-				<?php edit_post_link(); ?>
-
-			</article>
-			<!-- /article -->
-
-		<?php endwhile; ?>
-
-		<?php else : ?>
-
-			<!-- article -->
-			<article>
-
-				<h2><?php esc_html_e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
-
-			</article>
-			<!-- /article -->
-
-		<?php endif; ?>
-
-		</section>
-		<!-- /section -->
-	</main>
-
-<?php get_sidebar(); ?>
+    <section class="jumbotron-interna py-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-delay="200">
+                        <?php the_title(); ?>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <?php the_content(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <?php get_footer(); ?>
