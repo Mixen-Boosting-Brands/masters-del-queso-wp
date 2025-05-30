@@ -69,7 +69,9 @@
                 <h4>Términos y condiciones</h4>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#">Saber más</a>
+                        <a href="<?php echo esc_url(
+                            get_permalink(24)
+                        ); ?>">Saber más</a>
                     </li>
                 </ul>
             </div>
