@@ -3,7 +3,7 @@
 // Small devices (landscape phones, 576px and up)
 @include media-breakpoint-up(sm) {
     .jumbotron-interna {
-        margin-top: 150px;
+        margin-top: 122px;
     }
 
     #thumb-receta {
@@ -17,7 +17,7 @@
 // Medium devices (tablets, 768px and up)
 @include media-breakpoint-up(md) {
     .jumbotron-interna {
-        margin-top: 200px;
+        margin-top: 120px;
     }
 }
 
@@ -34,22 +34,12 @@
             max-width: 60%;
         }
     }
-
-    .jumbotron-interna {
-        margin-top: 228px;
-    }
 }
 
 // X-Large devices (large desktops, 1200px and up)
 @include media-breakpoint-up(xl) {
-    .jumbotron-interna {
-        margin-top: 256px;
-    }
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 @include media-breakpoint-up(xxl) {
-    .jumbotron-interna {
-        margin-top: 280px;
-    }
 }
