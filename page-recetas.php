@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<section id="recetas" class="py-60">
+<section class="py-60">
     <div class="container">
         <div class="row mb-4">
             <div class="col-12">
