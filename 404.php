@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-    <section class="py-60">
+    <section class="jumbotron-interna py-60">
         <div class="container">
             <div class="row">
                 <div class="col-12">
