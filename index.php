@@ -180,8 +180,6 @@
                         $productos_query = new WP_Query([
                             "post_type" => "productos",
                             "posts_per_page" => -1,
-                            "orderby" => "date",
-                            "order" => "DESC",
                         ]);
 
                         if ($productos_query->have_posts()):
@@ -212,19 +210,15 @@
                                 <div class="card-body">
                                     <h1 class="card-title"><?php the_title(); ?></h1>
 
-                                    <?php if ($subtitulo): ?>
-                                        <p class="card-subtitle"><?php echo esc_html(
-                                            $subtitulo
+                                    <?php if (
+                                        get_field("descripcion_breve")
+                                    ): ?>
+                                        <p class="card-subtitle"><?php the_field(
+                                            "descripcion_breve"
                                         ); ?></p>
                                     <?php endif; ?>
 
-                                    <?php if ($descripcion): ?>
-                                        <p class="card-text"><?php echo esc_html(
-                                            $descripcion
-                                        ); ?></p>
-                                    <?php else: ?>
                                         <p class="card-text"><?php the_excerpt(); ?></p>
-                                    <?php endif; ?>
 
                                     <?php if (
                                         $receta_post &&
