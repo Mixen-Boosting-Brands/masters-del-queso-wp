@@ -90,9 +90,13 @@
                         <?php endif; ?>
 
                         <?php if (get_field("producto_descripcion")): ?>
-                            <p class="card-text"><?php the_field(
-                                "producto_descripcion"
-                            ); ?></p>
+                            <a href="<?php the_field(
+                                "producto_receta_link"
+                            ); ?>">
+                                <p class="card-text"><?php the_field(
+                                    "producto_descripcion"
+                                ); ?></p>
+                            </a>
                         <?php endif; ?>
 
                         <?php if (get_field("producto_receta_link")): ?>
