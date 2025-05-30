@@ -32,7 +32,7 @@
                         para tus platillos
                     </h1>
                     <a
-                        href="#contacto"
+                        href="#productos"
                         class="btn btn-secondary btn-lg rounded-pill"
                         data-aos="fade-up"
                         data-aos-duration="1000"
