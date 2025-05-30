@@ -27,7 +27,12 @@
                     <h1 data-aos="fade-up"
                         data-aos-duration="1000"
                         data-aos-delay="300">
-                        <?php the_field("producto_relacionado"); ?>
+                            <?php
+                            $producto = get_field("producto_relacionado");
+                            if ($producto) {
+                                echo esc_html($producto->post_title);
+                            }
+                            ?>
                     </h1>
                 </div>
                 <div class="row">
