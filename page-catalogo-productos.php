@@ -98,7 +98,7 @@
                             <a href="<?php the_field("receta_relacionada"); ?>">
                                 <img src="<?php echo esc_url(
                                     get_template_directory_uri()
-                                ); ?>/assets/images/productos/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                                ); ?>/assets/images/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
                             </a>
                         <?php else: ?>
                             <a href="<?php the_field(
@@ -106,7 +106,7 @@
                             ); ?>" class="disabled">
                                 <img src="<?php echo esc_url(
                                     get_template_directory_uri()
-                                ); ?>/assets/images/productos/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                                ); ?>/assets/images/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
                             </a>
                         <?php endif; ?>
                     <?php endif; ?>
