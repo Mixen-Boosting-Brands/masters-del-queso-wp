@@ -1,106 +1,76 @@
 <?php
-/* Template Name: Catálogo de Productos */
+/**
+ * Template Name: Catálogo de Productos
+ */
+
 get_header(); ?>
 
-<section id="quesos-100" class="jumbotron-interna py-60">
-    <div class="container">
-        <div class="row mb-4">
-            <div class="col-12 text-center">
-                <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">Quesos 100% Leche</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <img src="<?php echo esc_url(
-                    get_template_directory_uri()
-                ); ?>/assets/images/productos/thumb-quesos-100@2x.png"
-                    alt="" class="img-fluid" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" />
-            </div>
-        </div>
-    </div>
-</section>
+<section id="productos" class="container my-5">
+    <h2 class="text-center mb-5">Catálogo de Productos</h2>
+    <div class="row gy-4">
 
-<section id="catalogo" class="py-60">
-    <div class="container">
         <?php
-        $taxonomy = "category"; // your taxonomy (if you registered a custom one like 'categoria_producto', change this)
+        $args = [
+            "post_type" => "productos",
+            "posts_per_page" => -1,
+            "orderby" => "title",
+            "order" => "ASC",
+        ];
 
-        $categories = get_terms([
-            "taxonomy" => $taxonomy,
-            "hide_empty" => true,
-        ]);
+        $productos_query = new WP_Query($args);
 
-        if (!empty($categories) && !is_wp_error($categories)):
-            foreach ($categories as $category): ?>
-            <div class="row mb-4">
-                <div class="col-12">
-                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
-                        <?php echo esc_html($category->name); ?>
-                    </h1>
+        if ($productos_query->have_posts()):
+            $delay = 0;
+            while ($productos_query->have_posts()):
+
+                $productos_query->the_post();
+                $receta = get_field("receta_relacionada");
+                $subtitulo = get_field("subtitulo");
+                ?>
+
+        <div class="col-lg-6 col-xl-3 my-auto">
+            <div class="card h-100" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo esc_attr(
+                $delay
+            ); ?>">
+                <?php if (has_post_thumbnail()): ?>
+                    <?php the_post_thumbnail("thumb-producto-receta", [
+                        "class" => "icon img-fluid",
+                    ]); ?>
+                <?php endif; ?>
+                <div class="card-body d-flex flex-column">
+                    <h1 class="card-title h5"><?php the_title(); ?></h1>
+
+                    <?php if ($subtitulo): ?>
+                        <p class="card-subtitle text-muted mb-2"><?php echo esc_html(
+                            $subtitulo
+                        ); ?></p>
+                    <?php endif; ?>
+
+                    <p class="card-text mb-4"><?php echo get_the_excerpt(); ?></p>
+
+                    <?php if ($receta): ?>
+                        <a href="<?php echo esc_url(
+                            get_permalink($receta)
+                        ); ?>" class="btn btn-primary btn-lg rounded-pill mt-auto">Ver receta</a>
+                    <?php else: ?>
+                        <a href="#" class="btn btn-primary btn-lg rounded-pill mt-auto disabled" tabindex="-1" aria-disabled="true">Sin receta</a>
+                    <?php endif; ?>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <?php
-                $productos_query = new WP_Query([
-                    "post_type" => "productos",
-                    "posts_per_page" => -1,
-                    "tax_query" => [
-                        [
-                            "taxonomy" => $taxonomy,
-                            "field" => "term_id",
-                            "terms" => $category->term_id,
-                        ],
-                    ],
-                ]);
-
-                if ($productos_query->have_posts()):
-                    $delay = 100;
-                    while ($productos_query->have_posts()):
-                        $productos_query->the_post(); ?>
-                    <div class="col-lg-6 col-xl-3 my-auto">
-                        <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo esc_attr(
-                            $delay
-                        ); ?>">
-                            <?php the_post_thumbnail("thumb-producto-receta", [
-                                "class" => "icon img-fluid",
-                            ]); ?>
-                            <div class="card-body">
-                                <h1 class="card-title"><?php the_title(); ?></h1>
-                                <p class="card-subtitle">
-                                    <?php echo esc_html(
-                                        get_post_meta(
-                                            get_the_ID(),
-                                            "descripcion_breve",
-                                            true
-                                        )
-                                    ); ?>
-                                </p>
-                                <p class="card-text"><?php the_content(); ?></p>
-                                <a href="#" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php $delay += 100;
-                    endwhile;
-                    wp_reset_postdata();
-                else:
-                     ?>
-                    <div class="col-12">
-                        <p>No hay productos en esta categoría.</p>
-                    </div>
-                <?php
-                endif;
-                ?>
-            </div>
-
-        <?php endforeach;
+        <?php $delay += 100; // increase delay per card for a nice staggered animation
+            endwhile;
+            wp_reset_postdata();
         else:
              ?>
-            <p>No se encontraron categorías.</p>
+
+        <p class="text-center">No hay productos disponibles en este momento.</p>
+
         <?php
         endif;
         ?>
+
     </div>
 </section>
 
