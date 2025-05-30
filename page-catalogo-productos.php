@@ -83,29 +83,21 @@
 
                     <div class="card-body">
                         <h1 class="card-title"><?php the_title(); ?></h1>
-                        <?php if (get_field("producto_subtitulo")): ?>
+                        <?php if (get_field("descripcion_breve")): ?>
                             <p class="card-subtitle"><?php the_field(
-                                "producto_subtitulo"
+                                "descripcion_breve"
                             ); ?></p>
                         <?php endif; ?>
 
-                        <?php if (get_field("producto_descripcion")): ?>
-                            <a href="<?php the_field(
-                                "producto_receta_link"
-                            ); ?>">
-                                <p class="card-text"><?php the_field(
-                                    "producto_descripcion"
-                                ); ?></p>
-                            </a>
-                        <?php endif; ?>
+                            <p class="card-text"><?php the_content(); ?></p>
 
-                        <?php if (get_field("producto_receta_link")): ?>
+                        <?php if (get_field("receta_relacionada")): ?>
                             <a href="<?php the_field(
-                                "producto_receta_link"
+                                "receta_relacionada"
                             ); ?>" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
                         <?php else: ?>
                             <a href="<?php the_field(
-                                "producto_receta_link"
+                                "receta_relacionada"
                             ); ?>" class="btn btn-primary btn-lg rounded-pill disabled">Ver receta</a>
                         <?php endif; ?>
                     </div>
