@@ -5,7 +5,7 @@
 		<title><?php
   wp_title("");
   if (wp_title("", false)) {
-      echo " : ";
+      echo " - ";
   }
   bloginfo("name");
   ?></title>
