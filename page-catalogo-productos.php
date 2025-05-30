@@ -32,7 +32,7 @@
         <?php
         // Get all product categories
         $product_categories = get_categories([
-            "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
+            "taxonomy" => "category", // o 'producto_categoria' si fuera taxonomía custom
             "hide_empty" => true,
             "orderby" => "term_order",
         ]);
@@ -55,7 +55,7 @@
                 "posts_per_page" => -1,
                 "tax_query" => [
                     [
-                        "taxonomy" => "category", // or 'producto_categoria' if custom taxonomy
+                        "taxonomy" => "category",
                         "field" => "slug",
                         "terms" => $category->slug,
                     ],
@@ -65,64 +65,45 @@
             if ($product_query->have_posts()):
                 $delay = 100;
                 while ($product_query->have_posts()):
-                    $product_query->the_post(); ?>
+
+                    $product_query->the_post();
+
+                    $receta_relacionada = get_field("receta_relacionada");
+                    $receta_link = $receta_relacionada
+                        ? get_permalink($receta_relacionada->ID)
+                        : "#";
+                    $disabled_class = $receta_relacionada ? "" : "disabled";
+                    ?>
 
             <div class="col-lg-6 col-xl-3 my-auto">
                 <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo esc_attr(
                     $delay
                 ); ?>">
+
                     <?php if (has_post_thumbnail()): ?>
-                        <?php if (get_field("receta_relacionada")): ?>
-                            <a href="<?php the_field("receta_relacionada"); ?>">
-                                <?php the_post_thumbnail(
-                                    "thumb-producto-receta",
-                                    [
-                                        "class" => "icon img-fluid",
-                                    ]
-                                ); ?>
-                            </a>
-                        <?php else: ?>
-                            <a href="<?php the_field(
-                                "receta_relacionada"
-                            ); ?>" class="disabled">
-                                <?php the_post_thumbnail(
-                                    "thumb-producto-receta",
-                                    [
-                                        "class" => "icon img-fluid",
-                                    ]
-                                ); ?>
-                            </a>
-                        <?php endif; ?>
+                        <a href="<?php echo esc_url(
+                            $receta_link
+                        ); ?>" class="<?php echo esc_attr($disabled_class); ?>">
+                            <?php the_post_thumbnail("thumb-producto-receta", [
+                                "class" => "icon img-fluid",
+                            ]); ?>
+                        </a>
                     <?php else: ?>
-                        <?php if (get_field("receta_relacionada")): ?>
-                            <a href="<?php the_field("receta_relacionada"); ?>">
-                                <img src="<?php echo esc_url(
-                                    get_template_directory_uri()
-                                ); ?>/assets/images/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
-                            </a>
-                        <?php else: ?>
-                            <a href="<?php the_field(
-                                "receta_relacionada"
-                            ); ?>" class="disabled">
-                                <img src="<?php echo esc_url(
-                                    get_template_directory_uri()
-                                ); ?>/assets/images/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
-                            </a>
-                        <?php endif; ?>
+                        <a href="<?php echo esc_url(
+                            $receta_link
+                        ); ?>" class="<?php echo esc_attr($disabled_class); ?>">
+                            <img src="<?php echo esc_url(
+                                get_template_directory_uri()
+                            ); ?>/assets/images/placeholder.png" class="icon img-fluid" alt="<?php the_title_attribute(); ?>" />
+                        </a>
                     <?php endif; ?>
 
                     <div class="card-body">
-                        <?php if (get_field("receta_relacionada")): ?>
-                            <a href="<?php the_field("receta_relacionada"); ?>">
-                                <h1 class="card-title"><?php the_title(); ?></h1>
-                            </a>
-                        <?php else: ?>
-                            <a href="<?php the_field(
-                                "receta_relacionada"
-                            ); ?>" class="disabled">
-                                <h1 class="card-title"><?php the_title(); ?></h1>
-                            </a>
-                        <?php endif; ?>
+                        <a href="<?php echo esc_url(
+                            $receta_link
+                        ); ?>" class="<?php echo esc_attr($disabled_class); ?>">
+                            <h1 class="card-title"><?php the_title(); ?></h1>
+                        </a>
 
                         <?php if (get_field("descripcion_breve")): ?>
                             <p class="card-subtitle"><?php the_field(
@@ -130,17 +111,15 @@
                             ); ?></p>
                         <?php endif; ?>
 
-                            <p class="card-text"><?php the_excerpt(); ?></p>
+                        <p class="card-text"><?php the_excerpt(); ?></p>
 
-                        <?php if (get_field("receta_relacionada")): ?>
-                            <a href="<?php the_field(
-                                "receta_relacionada"
-                            ); ?>" class="btn btn-primary btn-lg rounded-pill">Ver receta</a>
-                        <?php else: ?>
-                            <a href="<?php the_field(
-                                "receta_relacionada"
-                            ); ?>" class="btn btn-primary btn-lg rounded-pill disabled">Ver receta</a>
-                        <?php endif; ?>
+                        <a href="<?php echo esc_url(
+                            $receta_link
+                        ); ?>" class="btn btn-primary btn-lg rounded-pill <?php echo esc_attr(
+    $disabled_class
+); ?>">
+                            Ver receta
+                        </a>
                     </div>
                 </div>
             </div>
