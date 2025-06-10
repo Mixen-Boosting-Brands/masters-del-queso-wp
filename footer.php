@@ -59,7 +59,7 @@
                             ); ?>/recetas">Recetas</a>
                         </li>
                         <li>
-                            <a href="#">Contacto</a>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#contactoModal">Contacto</a>
                         </li>
                     </ul>
                 </nav>

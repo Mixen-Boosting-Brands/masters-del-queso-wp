@@ -108,9 +108,11 @@
                     </ul>
                 </nav>
                 <a
-                    href="#contacto"
+                    href="javascript:void(0)"
                     class="anchor btn btn-primary rounded-pill"
                     id="btn-contacto"
+                    data-bs-toggle="modal"
+                    data-bs-target="#contactoModal"
                     >Contacto</a
                 >
             </div>
@@ -167,7 +169,7 @@
  ); ?>"> Recetas </a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#contacto"> Contacto </a>
+                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#contactoModal"> Contacto </a>
                                 </li>
                             </ul>
                         </nav>
