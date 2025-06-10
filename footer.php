@@ -326,7 +326,7 @@
                         </option>
                     </select>
                     <label for="colonia" class="form-label"
-                        >Estado*</label
+                        >Colonia*</label
                     >
                     <div class="valid-feedback">¡Luce bien!</div>
                     <div class="invalid-feedback">
