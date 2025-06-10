@@ -5,8 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const coloniaSelect = document.querySelector('select[name="colonia"]');
 
   cpInput.addEventListener("blur", () => {
-    const cp = cpInput.value.trim();
-    if (cp.length === 5) {
+    // Solo números, eliminamos cualquier otro caracter
+    const cp = cpInput.value.replace(/\D/g, "");
+
+    if (cp.length >= 5) {
+      // mínimo 5 dígitos
       fetch(`https://sepomex.icalialabs.com/api/v1/zip_codes/${cp}`)
         .then((response) => response.json())
         .then((data) => {
@@ -34,6 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch((error) => {
           console.error("Error consultando CP:", error);
         });
+    } else {
+      // Opcional: limpiar campos si CP no es válido
+      estadoSelect.innerHTML = `<option value="">Introduce un código postal válido</option>`;
+      municipioInput.value = "";
+      coloniaSelect.innerHTML = `<option value="">Sin resultados</option>`;
     }
   });
 });
