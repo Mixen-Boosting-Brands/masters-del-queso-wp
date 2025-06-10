@@ -324,7 +324,7 @@
                         required
                     >
                         <option value="">
-                            Seleccione uno...
+                            Selecciona...
                         </option>
                         <option value="Afganistán">
                             Afganistán
@@ -885,8 +885,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-
         </div>
     </div>
 </div>

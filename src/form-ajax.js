@@ -78,6 +78,9 @@ document.addEventListener(
                   $("#cp").val("");
                   $("#estado").prop("selectedIndex", 0);
                   $("#municipio").val("");
+                  $("#colonia").prop("selectedIndex", 0);
+                  $("#calle").val("");
+                  $("#numero").val("");
                   $("#pais").prop("selectedIndex", 0);
                   $("#negocio_si").prop("checked", false);
                   $("#negocio_no").prop("checked", false);
@@ -106,6 +109,9 @@ document.addEventListener(
                   $("#cp").val("");
                   $("#estado").prop("selectedIndex", 0);
                   $("#municipio").val("");
+                  $("#colonia").prop("selectedIndex", 0);
+                  $("#calle").val("");
+                  $("#numero").val("");
                   $("#pais").prop("selectedIndex", 0);
                   $("#negocio_si").prop("checked", false);
                   $("#negocio_no").prop("checked", false);
