@@ -2,6 +2,7 @@
 window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle.js");
 
 // Local Scripts
+import "../src/form-ajax";
 import "../src/smooth-scrolling";
 import "../src/aos";
 import "../src/swipers";
