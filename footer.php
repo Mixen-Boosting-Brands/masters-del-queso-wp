@@ -315,6 +315,60 @@
                         Por favor introduce tu municipio.
                     </div>
                 </div>
+                <div class="col-md-4 form-floating">
+                    <select
+                        class="form-control"
+                        name="colonia"
+                        required
+                    >
+                        <option value="">
+                            Selecciona...
+                        </option>
+                    </select>
+                    <label for="colonia" class="form-label"
+                        >Estado*</label
+                    >
+                    <div class="valid-feedback">¡Luce bien!</div>
+                    <div class="invalid-feedback">
+                        Por favor selecciona tu colonia.
+                    </div>
+                </div>
+                <div class="col-md-4 form-floating">
+                    <input
+                        type="text"
+                        class="form-control shadow-none"
+                        id="calle"
+                        name="calle"
+                        placeholder="Calle*"
+                        pattern=".{5,50}"
+                        required
+                    />
+                    <label for="calle" class="form-label"
+                        >Calle*</label
+                    >
+                    <div class="valid-feedback">¡Luce bien!</div>
+                    <div class="invalid-feedback">
+                        Por favor introduce tu calle.
+                    </div>
+                </div>
+                <div class="col-md-4 form-floating">
+                    <input
+                        type="text"
+                        class="form-control shadow-none"
+                        id="numero"
+                        name="numero"
+                        placeholder="numero*"
+                        pattern=".{5,50}"
+                        required
+                    />
+                    <label for="numero" class="form-label"
+                        >Número*</label
+                    >
+                    <div class="valid-feedback">¡Luce bien!</div>
+                    <div class="invalid-feedback">
+                        Por favor introduce el número.
+                    </div>
+                </div>
                 <div class="col-md-12 form-floating">
                     <select
                         class="form-control"
