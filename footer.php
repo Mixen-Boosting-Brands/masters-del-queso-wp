@@ -857,7 +857,9 @@
                         required
                     />
                     <label class="form-check-label" for="de-acuerdo"
-                        >Estoy de acuerdo con los <a href="https://wacarnemart.com/terminos-condiciones" target="_blank"">términos y condiciones</a>.</label
+                        >Estoy de acuerdo con los <a href="<?php echo esc_url(
+                            get_permalink(24)
+                        ); ?>">términos y condiciones</a>.</label
                     >
                     <div class="valid-feedback">
                         Aceptaste los términos y condiciones.
