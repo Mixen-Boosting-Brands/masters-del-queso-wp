@@ -190,7 +190,7 @@
                                 // Optional: custom fields or ACF fields here
                                 $imagen = get_the_post_thumbnail_url(
                                     get_the_ID(),
-                                    "medium_large"
+                                    "thumb-producto-swiper"
                                 );
                                 $subtitulo = get_field("subtitulo"); // Example ACF field
                                 $descripcion = get_field("descripcion"); // Example ACF field
