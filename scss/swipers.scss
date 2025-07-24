@@ -11,6 +11,12 @@
         opacity: 0.5;
         transition: all 0.3s ease;
         transform: scale(0.8); /* Initial scale for all slides */
+
+        img {
+            height: 300px; /* altura fija */
+            width: 100%;
+            object-fit: cover;
+        }
     }
 
     .swiper-pagination {
